@@ -8,7 +8,9 @@
 
       cy.get('input#lastName').type('Espeche')
 
-      cy.get('input#email').type('marcosespeche@test.com')
+      const emailPrueba = generarEmailAleatorio();
+
+      cy.get('input#email').type(emailPrueba)
 
       cy.get('input[type="password"]#password').type('test123')
   
@@ -18,3 +20,17 @@
 
     })
   })
+
+  function generarEmailAleatorio() {
+    const caracteres = '-_$#&*abcdefghijklmnopqrstuvwxyz0123456789';
+    const dominio = 'test.com';
+    const longitud = 6;
+
+    let nombreUsuario = '';
+    for (let i = 0; i < longitud; i++) {
+        nombreUsuario += caracteres[parseInt(Math.random() * caracteres.length)];
+    }
+
+    return `${nombreUsuario}@${dominio}`;
+}
+
